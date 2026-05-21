@@ -20,7 +20,7 @@ type BusinessResult = {
   testCase: string;
 };
 
-const REPORT_DIR = 'playwright-report';
+const REPORT_DIR = 'business-report';
 const REPORT_FILE = 'index.html';
 const REPORT_PDF_FILE = 'report.pdf';
 
@@ -497,6 +497,10 @@ class BusinessHtmlReporter implements Reporter {
     const completedAt = new Date();
     fs.writeFileSync(this.reportPath, renderReport(this.results, this.startedAt, completedAt), 'utf8');
     console.log(`\nAOB business report: ${this.reportPath}`);
+
+    if (this.results.length === 0) {
+      return;
+    }
 
     try {
       const pdfPath = await exportReportPdf(this.reportPath);

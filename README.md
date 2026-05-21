@@ -72,3 +72,23 @@ Optional:
 $env:PLAYWRIGHT_SLOW_MO_MS = "250"
 npm run test
 ```
+
+## GitHub Actions Pipeline
+
+The repository includes `.github/workflows/playwright.yml`.
+
+The pipeline runs on pushes and pull requests to `main` or `master`, and it can also be started manually from the GitHub Actions tab.
+
+Before running the live tests in GitHub, add these repository secrets:
+
+- `AOB_DEPLOY_CSV_BASE64` for `deploy.csv`
+- `AOB_SEARCH_INPUT_CSV_BASE64` for `search-input.csv`
+
+Create the secret values from PowerShell:
+
+```powershell
+[Convert]::ToBase64String([IO.File]::ReadAllBytes("deploy.csv"))
+[Convert]::ToBase64String([IO.File]::ReadAllBytes("search-input.csv"))
+```
+
+The manual pipeline run lets you choose the base URL and the npm test script to run.
