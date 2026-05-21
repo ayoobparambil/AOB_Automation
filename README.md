@@ -73,13 +73,15 @@ $env:PLAYWRIGHT_SLOW_MO_MS = "250"
 npm run test
 ```
 
-## GitHub Actions Pipeline
+## Azure DevOps Pipeline
 
-The repository includes `.github/workflows/playwright.yml`.
+The repository includes `azure-pipelines.yml`.
 
-The pipeline runs on pushes and pull requests to `main` or `master`, and it can also be started manually from the GitHub Actions tab.
+The pipeline runs nightly at 2:00 AM Brisbane time. Azure DevOps schedules use UTC, so the YAML cron is `0 16 * * *`.
 
-Before running the live tests in GitHub, add these repository secrets:
+It can also be started manually from Azure DevOps with a selected base URL and npm test script.
+
+Before running the live tests in Azure DevOps, add these secret pipeline variables:
 
 - `AOB_DEPLOY_CSV_BASE64` for `deploy.csv`
 - `AOB_SEARCH_INPUT_CSV_BASE64` for `search-input.csv`
@@ -90,5 +92,3 @@ Create the secret values from PowerShell:
 [Convert]::ToBase64String([IO.File]::ReadAllBytes("deploy.csv"))
 [Convert]::ToBase64String([IO.File]::ReadAllBytes("search-input.csv"))
 ```
-
-The manual pipeline run lets you choose the base URL and the npm test script to run.
