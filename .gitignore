@@ -1,0 +1,8 @@
+node_modules/
+playwright-report/
+business-report/
+test-results/
+deploy.csv
+search-input.csv
+tenants.csv
+*.env

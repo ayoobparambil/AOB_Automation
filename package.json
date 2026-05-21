@@ -1,0 +1,26 @@
+{
+  "name": "aob-automation",
+  "version": "1.0.0",
+  "description": "Standalone Playwright UI automation tests for AOB",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "build": "tsc --noEmit -p tsconfig.json",
+    "test": "playwright test -c playwright.config.ts",
+    "test:headed": "playwright test -c playwright.config.ts --headed",
+    "test:list": "playwright test -c playwright.config.ts --list",
+    "test:approve": "playwright test -c playwright.config.ts -g \"approve path without download\"",
+    "test:download": "playwright test -c playwright.config.ts -g \"opens the download document\"",
+    "test:decline": "playwright test -c playwright.config.ts -g \"decline path\"",
+    "test:submit-search": "playwright test -c playwright.config.ts -g \"same form in search\"",
+    "test:seeded-search": "playwright test -c playwright.config.ts -g \"seeded mixed search\""
+  },
+  "dependencies": {
+    "@playwright/test": "^1.58.2",
+    "csv-parse": "^6.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "typescript": "^5.9.3"
+  }
+}
